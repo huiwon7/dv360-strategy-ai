@@ -397,6 +397,132 @@
     .validation-icon {
       font-size: 1.2rem;
     }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .container {
+        max-width: 100%;
+      }
+
+      h1, .subtitle {
+        color: #333;
+      }
+
+      .main-grid {
+        display: block;
+      }
+
+      .form-panel {
+        display: none;
+      }
+
+      .result-panel {
+        box-shadow: none;
+        padding: 20px;
+      }
+
+      .result-header {
+        border-bottom: 2px solid #667eea;
+      }
+
+      .result-actions {
+        display: none;
+      }
+
+      /* Show all tab contents in print */
+      .tabs {
+        display: none;
+      }
+
+      .tab-content {
+        display: block !important;
+        page-break-inside: avoid;
+        margin-bottom: 30px;
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .tab-content::before {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #667eea;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #667eea;
+      }
+
+      #tab-structure::before {
+        content: "1. 캠페인 구조";
+      }
+
+      #tab-targeting::before {
+        content: "2. 타겟팅 전략";
+      }
+
+      #tab-bidding::before {
+        content: "3. 입찰 전략";
+      }
+
+      #tab-validation::before {
+        content: "4. 검증 결과";
+      }
+
+      .grade-section {
+        background: #f8f9fa !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .grade-badge {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .kpi-card {
+        background: #f8f9fa !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .budget-bar, .budget-segment {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      table {
+        page-break-inside: avoid;
+      }
+
+      th {
+        background: #667eea !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .info-box {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .validation-item {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
   </style>
 </head>
 <body>
