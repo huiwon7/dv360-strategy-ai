@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DV360 Campaign Strategy Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 30px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Form Panel */
+    .form-panel {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      height: fit-content;
+    }
+
+    .form-panel h2 {
+      color: #667eea;
+      margin-bottom: 25px;
+      font-size: 1.3rem;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    .form-group label span {
+      color: #e74c3c;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .btn-generate {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.2s;
+      margin-top: 10px;
+    }
+
+    .btn-generate:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-generate:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Result Panel */
+    .result-panel {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      min-height: 600px;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 10px;
+    }
+
+    .result-header h2 {
+      color: #667eea;
+      font-size: 1.3rem;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-action {
+      padding: 8px 16px;
+      border: 2px solid #667eea;
+      background: white;
+      color: #667eea;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .btn-action:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-action:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Grade Badge */
+    .grade-section {
+      text-align: center;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    .grade-badge {
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 700;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      border-radius: 50%;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .grade-S { background: linear-gradient(135deg, #00b894, #00cec9); }
+    .grade-A { background: linear-gradient(135deg, #0984e3, #74b9ff); }
+    .grade-B { background: linear-gradient(135deg, #fdcb6e, #f39c12); }
+    .grade-C { background: linear-gradient(135deg, #e17055, #d63031); }
+    .grade-D { background: linear-gradient(135deg, #636e72, #2d3436); }
+
+    .grade-score {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .kpi-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .kpi-card .value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .kpi-card .label {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #e0e0e0;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      padding: 12px 20px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-weight: 500;
+      color: #666;
+      transition: all 0.3s;
+    }
+
+    .tab:hover {
+      color: #667eea;
+    }
+
+    .tab.active {
+      color: #667eea;
+      border-bottom-color: #667eea;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #667eea;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    /* Budget Bar */
+    .budget-bar {
+      display: flex;
+      height: 35px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+
+    .budget-segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Info Boxes */
+    .info-box {
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .info-box.success {
+      background: #d4edda;
+      border-left: 4px solid #28a745;
+    }
+
+    .info-box.warning {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+    }
+
+    .info-box.info {
+      background: #e7f1ff;
+      border-left: 4px solid #667eea;
+    }
+
+    /* Placeholder */
+    .placeholder {
+      text-align: center;
+      padding: 100px 40px;
+      color: #999;
+    }
+
+    .placeholder-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 60px;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #e0e0e0;
+      border-top-color: #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Validation List */
+    .validation-list {
+      list-style: none;
+    }
+
+    .validation-item {
+      padding: 10px 15px;
+      margin: 8px 0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .validation-item.pass {
+      background: #d4edda;
+    }
+
+    .validation-item.warning {
+      background: #fff3cd;
+    }
+
+    .validation-item.fail {
+      background: #f8d7da;
+    }
+
+    .validation-icon {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>DV360 Campaign Strategy Generator</h1>
+  <p class="subtitle">캠페인 정보를 입력하면 AI가 최적의 DV360 전략을 생성합니다</p>
+
+  <div class="main-grid">
+    <!-- Form Panel -->
+    <div class="form-panel">
+      <h2>캠페인 정보 입력</h2>
+
+      <form id="campaignForm">
+        <div class="form-group">
+          <label>업종 <span>*</span></label>
+          <select id="industry" required>
+            <option value="">선택하세요</option>
+            <option value="건강기능식품">건강기능식품</option>
+            <option value="교육">교육</option>
+            <option value="금융">금융</option>
+            <option value="이커머스_패션">이커머스/패션</option>
+            <option value="서비스_운세상담">서비스/운세상담</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>제품/서비스명 <span>*</span></label>
+          <input type="text" id="productService" placeholder="예: 비타민C 영양제" required>
+        </div>
+
+        <div class="form-group">
+          <label>타겟 고객 <span>*</span></label>
+          <input type="text" id="targetDemo" placeholder="예: 30-50세 여성" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>퍼널 단계 <span>*</span></label>
+            <select id="funnelStage" required>
+              <option value="인지(Awareness)">인지 (Awareness)</option>
+              <option value="고려(Consideration)">고려 (Consideration)</option>
+              <option value="전환(Conversion)" selected>전환 (Conversion)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>캠페인 목표 <span>*</span></label>
+            <select id="campaignGoal" required>
+              <option value="Brand Awareness">브랜드 인지</option>
+              <option value="Lead Generation" selected>리드 생성</option>
+              <option value="Purchase">구매 전환</option>
+              <option value="App Install">앱 설치</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>월 예산 (원) <span>*</span></label>
+            <input type="number" id="budget" placeholder="3000000" required min="1000000">
+          </div>
+
+          <div class="form-group">
+            <label>캠페인 기간 (일)</label>
+            <input type="number" id="duration" value="30" min="7" max="90">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>KPI 유형 <span>*</span></label>
+            <select id="kpiType" required>
+              <option value="CPA">CPA (전환당 비용)</option>
+              <option value="ROAS">ROAS (광고비 대비 매출)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>KPI 목표값 <span>*</span></label>
+            <input type="number" id="kpiTarget" placeholder="CPA: 10000 / ROAS: 300" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>지역 타겟팅</label>
+          <input type="text" id="geoTargets" value="대한민국 전역" placeholder="대한민국 전역">
+        </div>
+
+        <div class="form-group">
+          <label>추가 요구사항 (선택)</label>
+          <textarea id="constraints" rows="2" placeholder="예: 모바일 전용, 야간 시간대 집중 등"></textarea>
+        </div>
+
+        <button type="submit" class="btn-generate" id="generateBtn">
+          전략 생성하기
+        </button>
+      </form>
+    </div>
+
+    <!-- Result Panel -->
+    <div class="result-panel">
+      <div class="result-header">
+        <h2>생성된 캠페인 전략</h2>
+        <div class="result-actions">
+          <button class="btn-action" id="btnDownloadJson" disabled>JSON 다운로드</button>
+          <button class="btn-action" id="btnDownloadPdf" disabled>PDF 다운로드</button>
+        </div>
+      </div>
+
+      <div id="resultContent">
+        <div class="placeholder">
+          <div class="placeholder-icon">📊</div>
+          <p>왼쪽 폼에 캠페인 정보를 입력하고<br>"전략 생성하기" 버튼을 클릭하세요</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================================
+// DV360 Strategy Generator - JavaScript Implementation
+// ============================================================================
+
+// Knowledge Base (Golden Dataset)
+const GOLDEN_DATASET = {
+  "건강기능식품": {
+    template_id: "HEALTH_SUPPLEMENT",
+    target_demographic: "40-60세",
+    budget_allocation: { prospecting: 0.5, remarketing: 0.5 },
+    benchmarks: { cpa: 15000, conversion_rate: 1.8, roas: 2.5 },
+    audiences: {
+      affinity: "건강/피트니스, 웰빙, 자연주의",
+      inmarket: "건강보조식품, 비타민/보충제",
+      custom: "관절, 혈당, 면역력, 건강기능식품"
+    },
+    key_learnings: [
+      "40-60세 타겟 CPA 30% 낮음",
+      "건강 관련 기사 컨텐츠 주변 배치 효과적",
+      "아침 6-9시, 저녁 8-10시 전환율 높음"
+    ]
+  },
+  "교육": {
+    template_id: "EDUCATION",
+    target_demographic: "25-45세",
+    budget_allocation: { prospecting: 0.6, remarketing: 0.4 },
+    benchmarks: { cpa: 25000, conversion_rate: 2.2, roas: 3.0 },
+    audiences: {
+      affinity: "교육, 자기계발, 커리어",
+      inmarket: "교육 서비스, 온라인 학습",
+      custom: "자격증, 영어, 코딩, 취업"
+    },
+    key_learnings: [
+      "신학기 시즌(2-3월, 8-9월) CPA 40% 감소",
+      "직장인 타겟 저녁 9-11시 전환율 최고",
+      "무료 체험/샘플 강의 CTA 효과적"
+    ]
+  },
+  "금융": {
+    template_id: "FINANCE",
+    target_demographic: "30-55세",
+    budget_allocation: { prospecting: 0.45, remarketing: 0.55 },
+    benchmarks: { cpa: 35000, conversion_rate: 1.5, roas: 4.0 },
+    audiences: {
+      affinity: "금융/투자, 비즈니스, 부동산",
+      inmarket: "금융 서비스, 대출, 보험",
+      custom: "대출, 신용카드, 적금, 투자"
+    },
+    key_learnings: [
+      "리타겟팅 비중 높일수록 CPA 개선",
+      "신뢰도 메시지(보안, 인증) 중요",
+      "연말/연초 금융상품 관심도 높음"
+    ]
+  },
+  "이커머스_패션": {
+    template_id: "ECOMMERCE_FASHION",
+    target_demographic: "20-40세",
+    budget_allocation: { prospecting: 0.55, remarketing: 0.45 },
+    benchmarks: { cpa: 8000, conversion_rate: 3.5, roas: 4.5 },
+    audiences: {
+      affinity: "패션/뷰티, 쇼핑, 라이프스타일",
+      inmarket: "의류/액세서리, 온라인 쇼핑",
+      custom: "신상, 할인, 세일, 브랜드명"
+    },
+    key_learnings: [
+      "세일 시즌(5월, 11월) ROAS 50% 상승",
+      "Dynamic Remarketing 필수",
+      "인스타그램/유튜브 지면 효과적"
+    ]
+  },
+  "서비스_운세상담": {
+    template_id: "SERVICE_FORTUNE",
+    target_demographic: "20-50세",
+    budget_allocation: { prospecting: 0.6, remarketing: 0.4 },
+    benchmarks: { cpa: 10000, conversion_rate: 2.8, roas: 3.8 },
+    audiences: {
+      affinity: "점술/초자연, 자기계발, 라이프스타일",
+      inmarket: "운세 서비스",
+      custom: "운세, 사주, 타로, 궁합, 신점"
+    },
+    key_learnings: [
+      "저녁 7-12시 전환율 주간 대비 2배",
+      "여성 25-45세 전환율 최고",
+      "'무료' 키워드 CTR 50% 상승",
+      "신년/새해 시즌 CPA 20% 감소"
+    ]
+  },
+  "기타": {
+    template_id: "GENERAL",
+    target_demographic: "25-55세",
+    budget_allocation: { prospecting: 0.5, remarketing: 0.5 },
+    benchmarks: { cpa: 20000, conversion_rate: 2.0, roas: 3.0 },
+    audiences: {
+      affinity: "일반 관심사",
+      inmarket: "관련 카테고리",
+      custom: "관련 키워드"
+    },
+    key_learnings: [
+      "업종별 벤치마크 참고 필요",
+      "A/B 테스트로 최적 타겟 발굴 권장"
+    ]
+  }
+};
+
+// Validation Checklist
+const VALIDATION_CHECKS = [
+  { id: "BV001", desc: "IO 예산 합계 = 총 예산", severity: "critical" },
+  { id: "BV002", desc: "일일 예산 >= 목표 CPA × 10", severity: "warning" },
+  { id: "BV003", desc: "Pacing 설정 적절성", severity: "info" },
+  { id: "TV001", desc: "오디언스 중복 <= 30%", severity: "warning" },
+  { id: "TV002", desc: "지역 타겟팅 일치", severity: "critical" },
+  { id: "TV003", desc: "디바이스 비율 벤치마크 ±20%", severity: "info" },
+  { id: "TV004", desc: "Frequency Cap 적절성", severity: "warning" },
+  { id: "BD001", desc: "목표 CPA 벤치마크 대비 합리적", severity: "warning" },
+  { id: "BD002", desc: "목표 ROAS 달성 가능", severity: "warning" },
+  { id: "BD003", desc: "입찰 전략 데이터 요구사항 충족", severity: "critical" },
+  { id: "SV001", desc: "캠페인-IO-LI 계층 구조 정상", severity: "critical" },
+  { id: "SV002", desc: "네이밍 규칙 준수", severity: "info" },
+  { id: "SV003", desc: "Line Item 수 적정 (IO당 2-5개)", severity: "warning" },
+  { id: "TK001", desc: "Floodlight 태그 설정", severity: "critical" },
+  { id: "TK002", desc: "전환 창 설정 적절", severity: "info" }
+];
+
+// Seasonality
+function getSeasonality(industry) {
+  const month = new Date().getMonth() + 1;
+  let seasonality = { isPeak: false, adjustment: 1.0, notes: [] };
+
+  if (industry === "서비스_운세상담" && [1, 12].includes(month)) {
+    seasonality = { isPeak: true, adjustment: 1.2, notes: ["신년 시즌: CPA 20% 감소 예상"] };
+  } else if (industry === "교육" && [2, 3, 8, 9].includes(month)) {
+    seasonality = { isPeak: true, adjustment: 0.8, notes: ["신학기 시즌: CPA 40% 감소 예상"] };
+  } else if (industry === "이커머스_패션" && [5, 11].includes(month)) {
+    seasonality = { isPeak: true, adjustment: 1.3, notes: ["세일 시즌: 리타겟팅 확대 권장"] };
+  }
+
+  return seasonality;
+}
+
+// Strategy Generator
+function generateStrategy(input) {
+  const template = GOLDEN_DATASET[input.industry] || GOLDEN_DATASET["기타"];
+  const seasonality = getSeasonality(input.industry);
+  const now = new Date();
+
+  // Budget allocation
+  const prospectingBudget = Math.round(input.budget * template.budget_allocation.prospecting);
+  const remarketingBudget = input.budget - prospectingBudget;
+
+  // Generate IOs
+  const insertionOrders = [
+    {
+      io_name: "IO_Prospecting",
+      budget: prospectingBudget,
+      pacing: "Even",
+      line_items: [
+        {
+          li_name: "LI_Affinity",
+          targeting: { audience: `Affinity: ${template.audiences.affinity}`, geo: input.geoTargets, device: "Mobile 80% / Desktop 20%" },
+          bidding: { strategy: "Maximize Conversions", target_value: null },
+          frequency_cap: "3회/일, 15회/주"
+        },
+        {
+          li_name: "LI_Custom_Intent",
+          targeting: { audience: `Custom: ${template.audiences.custom}`, geo: input.geoTargets, device: "Mobile 80% / Desktop 20%" },
+          bidding: { strategy: input.kpiType === "CPA" ? "Target CPA" : "Target ROAS", target_value: input.kpiTarget },
+          frequency_cap: "4회/일, 20회/주"
+        }
+      ]
+    },
+    {
+      io_name: "IO_Remarketing",
+      budget: remarketingBudget,
+      pacing: "ASAP",
+      line_items: [
+        {
+          li_name: "LI_SiteVisitors",
+          targeting: { audience: "1st Party - 사이트 방문자 (최근 7일)", geo: input.geoTargets, device: "Mobile 80% / Desktop 20%" },
+          bidding: { strategy: input.kpiType === "CPA" ? "Target CPA" : "Target ROAS", target_value: input.kpiType === "CPA" ? Math.round(input.kpiTarget * 0.8) : Math.round(input.kpiTarget * 1.1) },
+          frequency_cap: "5회/일, 25회/주"
+        },
+        {
+          li_name: "LI_Converters_Similar",
+          targeting: { audience: "Similar - 기존 전환자 유사 오디언스", geo: input.geoTargets, device: "Mobile 80% / Desktop 20%" },
+          bidding: { strategy: input.kpiType === "CPA" ? "Target CPA" : "Target ROAS", target_value: input.kpiTarget },
+          frequency_cap: "3회/일, 15회/주"
+        }
+      ]
+    }
+  ];
+
+  // Validation
+  const validation = runValidation(input, insertionOrders, template);
+
+  // Build strategy object
+  const strategy = {
+    metadata: {
+      generated_at: now.toISOString(),
+      generator_version: "2026Q1-Web",
+      grade: validation.grade
+    },
+    campaign: {
+      name: `DV360_${input.industry}_${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}`,
+      goal: input.campaignGoal,
+      budget: input.budget,
+      duration_days: input.duration
+    },
+    insertion_orders: insertionOrders,
+    targeting: {
+      primary_audience: input.targetDemo,
+      geo_targets: [input.geoTargets],
+      device_split: "Mobile 80% / Desktop 20%",
+      time_targeting: "전 시간대 (저녁 7-11시 입찰 상향)",
+      exclusions: ["기존 전환 고객 (90일)", "경쟁사 직원"]
+    },
+    bidding: {
+      primary_strategy: `Target ${input.kpiType}`,
+      target_value: input.kpiType === "CPA" ? `${input.kpiTarget.toLocaleString()}원` : `${input.kpiTarget}%`,
+      phase_1: "Maximize Conversions (1-2주)",
+      phase_2: `Target ${input.kpiType} (2-4주)`,
+      seasonality_adjustment: seasonality.adjustment
+    },
+    optimization_roadmap: [
+      {
+        phase: "Phase 1: 학습 (Week 1-2)",
+        actions: ["Maximize Conversions 전략으로 시작", "전체 예산의 70% 활용", "A/B 테스트 셋업"],
+        kpis: ["전환 수", "CPM", "CTR"]
+      },
+      {
+        phase: "Phase 2: 최적화 (Week 3-4)",
+        actions: [`Target ${input.kpiType} 전환`, "저성과 Line Item 예산 재배분", "고성과 오디언스 확장"],
+        kpis: [input.kpiType, "전환율", "ROAS"]
+      }
+    ],
+    floodlight: {
+      activities: ["Lead/Purchase Counter", "PageView Counter"],
+      audience_lists: ["All Visitors (30일)", "Product Viewers (14일)", "Cart Abandoners (7일)", "Converters (90일) - Exclusion용"]
+    },
+    validation: validation,
+    benchmarks: {
+      industry: input.industry,
+      benchmark_cpa: `${template.benchmarks.cpa.toLocaleString()}원`,
+      benchmark_cvr: `${template.benchmarks.conversion_rate}%`,
+      benchmark_roas: `${template.benchmarks.roas}x`,
+      key_learnings: template.key_learnings
+    },
+    seasonality: seasonality
+  };
+
+  return strategy;
+}
+
+// Validation
+function runValidation(input, ios, template) {
+  const results = { passed: [], warnings: [], critical_failures: [], score: 0, grade: "" };
+
+  let passCount = 0;
+  const totalChecks = VALIDATION_CHECKS.length;
+
+  VALIDATION_CHECKS.forEach(check => {
+    let passed = true;
+    let message = "";
+
+    // Specific checks
+    if (check.id === "BV001") {
+      const ioTotal = ios.reduce((sum, io) => sum + io.budget, 0);
+      passed = ioTotal === input.budget;
+      if (!passed) message = `IO 합계(${ioTotal.toLocaleString()}) ≠ 총예산(${input.budget.toLocaleString()})`;
+    } else if (check.id === "BV002") {
+      const dailyBudget = input.budget / input.duration;
+      passed = input.kpiType !== "CPA" || dailyBudget >= input.kpiTarget * 10;
+      if (!passed) message = `일일 예산이 목표 CPA의 10배 미만`;
+    } else if (check.id === "BD001") {
+      if (input.kpiType === "CPA") {
+        const benchCpa = template.benchmarks.cpa;
+        passed = input.kpiTarget >= benchCpa * 0.5 && input.kpiTarget <= benchCpa * 2;
+        if (!passed) message = `목표 CPA가 벤치마크(${benchCpa.toLocaleString()}원) 대비 비현실적`;
+      }
+    }
+
+    if (passed) {
+      passCount++;
+      results.passed.push({ ...check, passed: true });
+    } else if (check.severity === "critical") {
+      results.critical_failures.push({ ...check, passed: false, message });
+    } else {
+      results.warnings.push({ ...check, passed: false, message });
+    }
+  });
+
+  results.score = (passCount / totalChecks) * 100;
+
+  // Grade calculation
+  if (results.critical_failures.length === 0 && results.score >= 95) {
+    results.grade = "S";
+  } else if (results.critical_failures.length === 0 && results.score >= 85) {
+    results.grade = "A";
+  } else if (results.critical_failures.length === 0 && results.score >= 70) {
+    results.grade = "B";
+  } else if (results.critical_failures.length <= 2) {
+    results.grade = "C";
+  } else {
+    results.grade = "D";
+  }
+
+  return results;
+}
+
+// ============================================================================
+// UI Rendering
+// ============================================================================
+
+let currentStrategy = null;
+
+function renderResult(strategy) {
+  currentStrategy = strategy;
+
+  const html = `
+    <!-- Grade Section -->
+    <div class="grade-section">
+      <div class="grade-badge grade-${strategy.metadata.grade}">${strategy.metadata.grade}</div>
+      <div class="grade-score">검증 점수: ${strategy.validation.score.toFixed(1)}% | ${strategy.validation.passed.length}개 통과</div>
+    </div>
+
+    <!-- KPI Grid -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="value">${(strategy.campaign.budget / 10000).toFixed(0)}만원</div>
+        <div class="label">총 예산</div>
+      </div>
+      <div class="kpi-card">
+        <div class="value">${strategy.bidding.target_value}</div>
+        <div class="label">목표 ${strategy.bidding.primary_strategy.replace('Target ', '')}</div>
+      </div>
+      <div class="kpi-card">
+        <div class="value">${strategy.campaign.duration_days}일</div>
+        <div class="label">캠페인 기간</div>
+      </div>
+      <div class="kpi-card">
+        <div class="value">${strategy.benchmarks.benchmark_cvr}</div>
+        <div class="label">예상 전환율</div>
+      </div>
+    </div>
+
+    ${strategy.seasonality.isPeak ? `
+    <div class="info-box success">
+      <strong>시즌 어드밴티지:</strong> ${strategy.seasonality.notes.join(', ')}
+    </div>
+    ` : ''}
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="structure">캠페인 구조</div>
+      <div class="tab" data-tab="targeting">타겟팅</div>
+      <div class="tab" data-tab="bidding">입찰 전략</div>
+      <div class="tab" data-tab="validation">검증 결과</div>
+    </div>
+
+    <!-- Tab: Structure -->
+    <div class="tab-content active" id="tab-structure">
+      <h3 style="margin-bottom: 15px;">예산 배분</h3>
+      <div class="budget-bar">
+        <div class="budget-segment" style="width: ${strategy.insertion_orders[0].budget / strategy.campaign.budget * 100}%; background: #667eea;">
+          프로스펙팅 ${(strategy.insertion_orders[0].budget / strategy.campaign.budget * 100).toFixed(0)}%
+        </div>
+        <div class="budget-segment" style="width: ${strategy.insertion_orders[1].budget / strategy.campaign.budget * 100}%; background: #34a853;">
+          리타겟팅 ${(strategy.insertion_orders[1].budget / strategy.campaign.budget * 100).toFixed(0)}%
+        </div>
+      </div>
+
+      <h3 style="margin: 20px 0 15px;">Insertion Orders</h3>
+      <table>
+        <tr>
+          <th>IO Name</th>
+          <th>예산</th>
+          <th>Pacing</th>
+          <th>Line Items</th>
+        </tr>
+        ${strategy.insertion_orders.map(io => `
+        <tr>
+          <td><strong>${io.io_name}</strong></td>
+          <td>${io.budget.toLocaleString()}원</td>
+          <td>${io.pacing}</td>
+          <td>${io.line_items.map(li => li.li_name).join(', ')}</td>
+        </tr>
+        `).join('')}
+      </table>
+
+      <h3 style="margin: 20px 0 15px;">Line Items 상세</h3>
+      <table>
+        <tr>
+          <th>Line Item</th>
+          <th>오디언스</th>
+          <th>입찰</th>
+          <th>Freq Cap</th>
+        </tr>
+        ${strategy.insertion_orders.flatMap(io => io.line_items.map(li => `
+        <tr>
+          <td>${li.li_name}</td>
+          <td>${li.targeting.audience}</td>
+          <td>${li.bidding.strategy}${li.bidding.target_value ? ` (${li.bidding.target_value})` : ''}</td>
+          <td>${li.frequency_cap}</td>
+        </tr>
+        `)).join('')}
+      </table>
+    </div>
+
+    <!-- Tab: Targeting -->
+    <div class="tab-content" id="tab-targeting">
+      <table>
+        <tr><th>항목</th><th>설정값</th></tr>
+        <tr><td>Primary Audience</td><td>${strategy.targeting.primary_audience}</td></tr>
+        <tr><td>지역</td><td>${strategy.targeting.geo_targets.join(', ')}</td></tr>
+        <tr><td>디바이스</td><td>${strategy.targeting.device_split}</td></tr>
+        <tr><td>시간대</td><td>${strategy.targeting.time_targeting}</td></tr>
+        <tr><td>제외 오디언스</td><td>${strategy.targeting.exclusions.join(', ')}</td></tr>
+      </table>
+
+      <h3 style="margin: 20px 0 15px;">업종 인사이트</h3>
+      <div class="info-box info">
+        <ul>
+          ${strategy.benchmarks.key_learnings.map(l => `<li>${l}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tab: Bidding -->
+    <div class="tab-content" id="tab-bidding">
+      <table>
+        <tr><th>항목</th><th>설정값</th></tr>
+        <tr><td>Primary Strategy</td><td>${strategy.bidding.primary_strategy}</td></tr>
+        <tr><td>목표값</td><td>${strategy.bidding.target_value}</td></tr>
+        <tr><td>Phase 1</td><td>${strategy.bidding.phase_1}</td></tr>
+        <tr><td>Phase 2</td><td>${strategy.bidding.phase_2}</td></tr>
+      </table>
+
+      <h3 style="margin: 20px 0 15px;">벤치마크 비교</h3>
+      <table>
+        <tr><th>지표</th><th>업종 벤치마크</th></tr>
+        <tr><td>CPA</td><td>${strategy.benchmarks.benchmark_cpa}</td></tr>
+        <tr><td>전환율</td><td>${strategy.benchmarks.benchmark_cvr}</td></tr>
+        <tr><td>ROAS</td><td>${strategy.benchmarks.benchmark_roas}</td></tr>
+      </table>
+
+      <h3 style="margin: 20px 0 15px;">최적화 로드맵</h3>
+      ${strategy.optimization_roadmap.map(phase => `
+      <div class="info-box info">
+        <strong>${phase.phase}</strong>
+        <ul>${phase.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+        <small>KPIs: ${phase.kpis.join(', ')}</small>
+      </div>
+      `).join('')}
+    </div>
+
+    <!-- Tab: Validation -->
+    <div class="tab-content" id="tab-validation">
+      <ul class="validation-list">
+        ${strategy.validation.passed.map(v => `
+        <li class="validation-item pass">
+          <span class="validation-icon">✓</span>
+          <span>${v.id}: ${v.desc}</span>
+        </li>
+        `).join('')}
+        ${strategy.validation.warnings.map(v => `
+        <li class="validation-item warning">
+          <span class="validation-icon">⚠</span>
+          <span>${v.id}: ${v.desc}${v.message ? ` - ${v.message}` : ''}</span>
+        </li>
+        `).join('')}
+        ${strategy.validation.critical_failures.map(v => `
+        <li class="validation-item fail">
+          <span class="validation-icon">✗</span>
+          <span>${v.id}: ${v.desc}${v.message ? ` - ${v.message}` : ''}</span>
+        </li>
+        `).join('')}
+      </ul>
+    </div>
+  `;
+
+  document.getElementById('resultContent').innerHTML = html;
+  document.getElementById('btnDownloadJson').disabled = false;
+  document.getElementById('btnDownloadPdf').disabled = false;
+
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(`tab-${tab.dataset.tab}`).classList.add('active');
+    });
+  });
+}
+
+// ============================================================================
+// Event Handlers
+// ============================================================================
+
+document.getElementById('campaignForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const input = {
+    industry: document.getElementById('industry').value,
+    productService: document.getElementById('productService').value,
+    targetDemo: document.getElementById('targetDemo').value,
+    funnelStage: document.getElementById('funnelStage').value,
+    campaignGoal: document.getElementById('campaignGoal').value,
+    budget: parseInt(document.getElementById('budget').value),
+    duration: parseInt(document.getElementById('duration').value),
+    kpiType: document.getElementById('kpiType').value,
+    kpiTarget: parseInt(document.getElementById('kpiTarget').value),
+    geoTargets: document.getElementById('geoTargets').value,
+    constraints: document.getElementById('constraints').value
+  };
+
+  // Show loading
+  document.getElementById('resultContent').innerHTML = `
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>전략 생성 중...</p>
+    </div>
+  `;
+
+  // Generate with slight delay for UX
+  setTimeout(() => {
+    const strategy = generateStrategy(input);
+    renderResult(strategy);
+  }, 800);
+});
+
+// JSON Download
+document.getElementById('btnDownloadJson').addEventListener('click', () => {
+  if (!currentStrategy) return;
+
+  const blob = new Blob([JSON.stringify(currentStrategy, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${currentStrategy.campaign.name}_strategy.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+// PDF Download (print)
+document.getElementById('btnDownloadPdf').addEventListener('click', () => {
+  window.print();
+});
+</script>
+
+</body>
+</html>
