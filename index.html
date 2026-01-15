@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DV360 Campaign Strategy AI Generator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      color: white;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin: 5px;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .card a {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    .card a:hover {
+      opacity: 0.9;
+    }
+
+    /* Features */
+    .features {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin-top: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .features h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .feature-item h4 {
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .feature-item p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Architecture */
+    .architecture {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin-top: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .architecture h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .arch-flow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .arch-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .arch-box h4 {
+      margin-bottom: 8px;
+    }
+
+    .arch-box p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .arch-arrow {
+      font-size: 2rem;
+      color: #667eea;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: white;
+      padding: 40px 20px;
+      opacity: 0.8;
+    }
+
+    footer a {
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .arch-flow {
+        flex-direction: column;
+      }
+
+      .arch-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Hero -->
+    <div class="hero">
+      <h1>DV360 Campaign Strategy AI Generator</h1>
+      <p>Google DV360 프로그래매틱 광고 캠페인 전략을 자동으로 생성하는 AI 시스템</p>
+      <div>
+        <span class="badge">3-Layer Architecture</span>
+        <span class="badge">Multi-Agent System</span>
+        <span class="badge">15-Point Validation</span>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="cards">
+      <div class="card">
+        <h3>Campaign Proposal</h3>
+        <p>모두의운세 DV360 캠페인 전략 제안서를 확인하세요. Grade A (93.3%) 검증 완료된 전략입니다.</p>
+        <a href="output/DV360_Campaign_Proposal.html">제안서 보기</a>
+      </div>
+
+      <div class="card">
+        <h3>Strategy JSON</h3>
+        <p>생성된 캠페인 전략의 원본 JSON 데이터를 확인하세요. API 연동 시 활용 가능합니다.</p>
+        <a href="output/strategy_20260115_222148.json">JSON 보기</a>
+      </div>
+
+      <div class="card">
+        <h3>Documentation</h3>
+        <p>시스템 아키텍처, 사용법, Grading 기준 등 전체 문서를 확인하세요.</p>
+        <a href="https://github.com/huiwon7/dv360-strategy-ai#readme">README</a>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+      <h2>주요 기능</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <h4>스마트 타겟팅</h4>
+          <p>업종별 최적 오디언스 자동 추천<br>Affinity, In-Market, Custom Intent</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          <h4>예산 최적화</h4>
+          <p>퍼널 단계별 예산 자동 배분<br>Prospecting/Retargeting 비율 최적화</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <h4>입찰 전략</h4>
+          <p>Phase별 입찰 전략 로드맵<br>Maximize → Target CPA/ROAS 전환</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✅</div>
+          <h4>자동 검증</h4>
+          <p>15-Point Pre-Launch Checklist<br>S/A/B/C/D 등급 자동 산정</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architecture -->
+    <div class="architecture">
+      <h2>System Architecture</h2>
+      <div class="arch-flow">
+        <div class="arch-box">
+          <h4>Layer 1</h4>
+          <p>Input Interface<br>Campaign Brief 파싱</p>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">
+          <h4>Layer 2</h4>
+          <p>Context Assembly<br>Knowledge Base 조회</p>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">
+          <h4>Layer 3</h4>
+          <p>Multi-Agent<br>Planner → Critic → Optimizer</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Supported Industries -->
+    <div class="features" style="margin-top: 40px;">
+      <h2>지원 업종</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">💊</div>
+          <h4>건강기능식품</h4>
+          <p>40-60세 타겟<br>전환 퍼널 최적화</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📚</div>
+          <h4>교육</h4>
+          <p>25-40세 타겟<br>고려 단계 캠페인</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏦</div>
+          <h4>금융</h4>
+          <p>30-50세 타겟<br>리드 제네레이션</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">👗</div>
+          <h4>이커머스/패션</h4>
+          <p>20-35세 타겟<br>구매 전환 최적화</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔮</div>
+          <h4>서비스/운세상담</h4>
+          <p>20-50세 타겟<br>가입/상담 연결</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>DV360 Campaign Strategy AI Generator v2026Q1</p>
+    <p style="margin-top: 10px;">
+      <a href="https://github.com/huiwon7/dv360-strategy-ai">GitHub Repository</a>
+    </p>
+  </footer>
+
+</body>
+</html>
