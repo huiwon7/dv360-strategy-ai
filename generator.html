@@ -503,7 +503,6 @@
       <div class="result-header">
         <h2>생성된 캠페인 전략</h2>
         <div class="result-actions">
-          <button class="btn-action" id="btnDownloadJson" disabled>JSON 다운로드</button>
           <button class="btn-action" id="btnDownloadPdf" disabled>PDF 다운로드</button>
         </div>
       </div>
@@ -1001,7 +1000,6 @@ function renderResult(strategy) {
   `;
 
   document.getElementById('resultContent').innerHTML = html;
-  document.getElementById('btnDownloadJson').disabled = false;
   document.getElementById('btnDownloadPdf').disabled = false;
 
   // Tab switching
@@ -1049,19 +1047,6 @@ document.getElementById('campaignForm').addEventListener('submit', function(e) {
     const strategy = generateStrategy(input);
     renderResult(strategy);
   }, 800);
-});
-
-// JSON Download
-document.getElementById('btnDownloadJson').addEventListener('click', () => {
-  if (!currentStrategy) return;
-
-  const blob = new Blob([JSON.stringify(currentStrategy, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${currentStrategy.campaign.name}_strategy.json`;
-  a.click();
-  URL.revokeObjectURL(url);
 });
 
 // PDF Download (print)
