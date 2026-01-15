@@ -715,6 +715,7 @@ function generateStrategy(input) {
 
   // Build strategy object
   const strategy = {
+    productService: input.productService,
     metadata: {
       generated_at: now.toISOString(),
       generator_version: "2026Q1-Web",
@@ -839,6 +840,7 @@ function renderResult(strategy) {
   const html = `
     <!-- Grade Section -->
     <div class="grade-section">
+      <h3 style="color: #667eea; margin-bottom: 15px; font-size: 1.2rem;">${currentStrategy.productService} DV360 캠페인전략</h3>
       <div class="grade-badge grade-${strategy.metadata.grade}">${strategy.metadata.grade}</div>
       <div class="grade-score">검증 점수: ${strategy.validation.score.toFixed(1)}% | ${strategy.validation.passed.length}개 통과</div>
     </div>
