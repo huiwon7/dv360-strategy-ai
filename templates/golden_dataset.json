@@ -1,0 +1,458 @@
+[
+  {
+    "template_id": "HEALTH_SUPPLEMENT_4060_CONVERSION",
+    "industry": "건강기능식품",
+    "target_demographic": "40-60세",
+    "funnel_stage": "전환(Conversion)",
+    "budget_range": "월 2,000만-5,000만원",
+    "campaign_structure": {
+      "campaign_goal": "Lead Generation (리드 확보)",
+      "insertion_orders": [
+        {
+          "io_name": "IO_Remarketing_Hot",
+          "budget_allocation": "40%",
+          "pacing": "ASAP",
+          "line_items": [
+            {
+              "li_name": "LI_CartAbandoners_Display",
+              "targeting": {
+                "audience": "1st Party - 장바구니 이탈자 (최근 7일)",
+                "geo": "서울/경기/부산 (주요 도시)",
+                "device": "Mobile 70% / Desktop 30%"
+              },
+              "bidding": {
+                "strategy": "Target CPA",
+                "target_value": "12,000원"
+              },
+              "frequency_cap": "5회/일, 25회/주",
+              "creative": {
+                "format": "Responsive Display",
+                "message": "첫 구매 20% 할인 + 무료배송"
+              }
+            },
+            {
+              "li_name": "LI_ProductViewers_Display",
+              "targeting": {
+                "audience": "1st Party - 제품 상세 페이지 방문자 (최근 14일)",
+                "geo": "대한민국 전역",
+                "device": "Mobile 80% / Desktop 20%"
+              },
+              "bidding": {
+                "strategy": "Target CPA",
+                "target_value": "15,000원"
+              },
+              "frequency_cap": "4회/일, 20회/주"
+            }
+          ]
+        },
+        {
+          "io_name": "IO_InMarket_Acquisition",
+          "budget_allocation": "35%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_InMarket_Health",
+              "targeting": {
+                "audience": "In-Market: Vitamins & Supplements",
+                "geo": "대한민국 전역",
+                "device": "Mobile 75% / Desktop 25%"
+              },
+              "bidding": {
+                "strategy": "Maximize Conversions",
+                "target_value": null
+              },
+              "frequency_cap": "3회/일, 15회/주"
+            }
+          ]
+        },
+        {
+          "io_name": "IO_Affinity_Awareness",
+          "budget_allocation": "25%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_Affinity_HealthFitness",
+              "targeting": {
+                "audience": "Affinity: Health & Fitness Buffs + Outdoor Enthusiasts",
+                "geo": "대한민국 전역",
+                "device": "Mobile 70% / Desktop 30%"
+              },
+              "bidding": {
+                "strategy": "Maximize Conversions",
+                "target_value": null
+              },
+              "frequency_cap": "3회/일, 12회/주"
+            }
+          ]
+        }
+      ]
+    },
+    "success_metrics": {
+      "achieved_cpa": "11,500원",
+      "target_cpa": "15,000원",
+      "conversion_rate": "2.3%",
+      "roas": "4.2"
+    },
+    "key_learnings": [
+      "모바일 전환율이 데스크톱 대비 1.8배 높음",
+      "저녁 7-10시 시간대 CPA 30% 낮음",
+      "관절/등산 관련 콘텐츠 타겟팅 효과 높음",
+      "첫 구매 할인 메시지가 무료배송 대비 CTR 40% 높음"
+    ]
+  },
+  {
+    "template_id": "EDUCATION_2540_CONSIDERATION",
+    "industry": "교육",
+    "target_demographic": "25-40세",
+    "funnel_stage": "고려(Consideration)",
+    "budget_range": "월 3,000만-8,000만원",
+    "campaign_structure": {
+      "campaign_goal": "Lead Generation (상담 신청)",
+      "insertion_orders": [
+        {
+          "io_name": "IO_Remarketing",
+          "budget_allocation": "35%",
+          "pacing": "ASAP",
+          "line_items": [
+            {
+              "li_name": "LI_FormAbandoners",
+              "targeting": {
+                "audience": "1st Party - 상담 신청 폼 이탈자",
+                "geo": "대한민국 전역",
+                "device": "Mobile 60% / Desktop 40%"
+              },
+              "bidding": {
+                "strategy": "Target CPA",
+                "target_value": "25,000원"
+              },
+              "frequency_cap": "5회/일, 25회/주"
+            }
+          ]
+        },
+        {
+          "io_name": "IO_InMarket_Education",
+          "budget_allocation": "40%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_InMarket_ContinuingEdu",
+              "targeting": {
+                "audience": "In-Market: Continuing Education, Professional Training",
+                "geo": "서울/경기/대전/부산",
+                "device": "Mobile 55% / Desktop 45%"
+              },
+              "bidding": {
+                "strategy": "Target CPA",
+                "target_value": "30,000원"
+              },
+              "frequency_cap": "3회/일, 15회/주"
+            }
+          ]
+        },
+        {
+          "io_name": "IO_Custom_Keywords",
+          "budget_allocation": "25%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_Custom_CareerKeywords",
+              "targeting": {
+                "audience": "Custom: 자격증, 취업준비, 이직, 커리어개발",
+                "geo": "대한민국 전역",
+                "device": "Mobile 65% / Desktop 35%"
+              },
+              "bidding": {
+                "strategy": "Maximize Conversions",
+                "target_value": null
+              },
+              "frequency_cap": "3회/일, 12회/주"
+            }
+          ]
+        }
+      ]
+    },
+    "success_metrics": {
+      "achieved_cpa": "22,000원",
+      "target_cpa": "30,000원",
+      "conversion_rate": "1.8%",
+      "roas": "5.5"
+    },
+    "key_learnings": [
+      "데스크톱에서 상담 신청 완료율 25% 높음 (폼 작성 용이)",
+      "신학기 시즌(2-3월, 8-9월) CPA 40% 감소",
+      "'무료 상담' 메시지가 '할인' 대비 전환율 2배",
+      "저녁 8-11시 직장인 유입 증가"
+    ]
+  },
+  {
+    "template_id": "FINANCE_3050_CONVERSION",
+    "industry": "금융",
+    "target_demographic": "30-50세",
+    "funnel_stage": "전환(Conversion)",
+    "budget_range": "월 5,000만-1억원",
+    "campaign_structure": {
+      "campaign_goal": "Lead Generation (대출 상담 신청)",
+      "insertion_orders": [
+        {
+          "io_name": "IO_Remarketing_HighIntent",
+          "budget_allocation": "45%",
+          "pacing": "ASAP",
+          "line_items": [
+            {
+              "li_name": "LI_Calculator_Users",
+              "targeting": {
+                "audience": "1st Party - 대출 계산기 사용자",
+                "geo": "대한민국 전역",
+                "device": "Mobile 50% / Desktop 50%"
+              },
+              "bidding": {
+                "strategy": "Target CPA",
+                "target_value": "35,000원"
+              },
+              "frequency_cap": "7회/일, 35회/주"
+            }
+          ]
+        },
+        {
+          "io_name": "IO_InMarket_Finance",
+          "budget_allocation": "35%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_InMarket_Loans",
+              "targeting": {
+                "audience": "In-Market: Personal Loans, Mortgage",
+                "geo": "대한민국 전역",
+                "device": "Mobile 55% / Desktop 45%"
+              },
+              "bidding": {
+                "strategy": "Target CPA",
+                "target_value": "45,000원"
+              },
+              "frequency_cap": "4회/일, 20회/주"
+            }
+          ]
+        },
+        {
+          "io_name": "IO_Similar_Converters",
+          "budget_allocation": "20%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_Similar_Approved",
+              "targeting": {
+                "audience": "Similar: 대출 승인 고객 유사",
+                "geo": "대한민국 전역",
+                "device": "Mobile 60% / Desktop 40%"
+              },
+              "bidding": {
+                "strategy": "Maximize Conversions",
+                "target_value": null
+              },
+              "frequency_cap": "3회/일, 15회/주"
+            }
+          ]
+        }
+      ]
+    },
+    "success_metrics": {
+      "achieved_cpa": "32,000원",
+      "target_cpa": "40,000원",
+      "conversion_rate": "1.2%",
+      "roas": "8.5"
+    },
+    "key_learnings": [
+      "연말정산 시즌(12-1월) CPA 25% 상승 (경쟁 심화)",
+      "데스크톱에서 폼 완료율 40% 높음",
+      "금리 비교 메시지가 한도 강조 대비 CTR 30% 높음",
+      "평일 오전 10-12시 직장인 전환율 최고"
+    ]
+  },
+  {
+    "template_id": "ECOMMERCE_FASHION_2035_CONVERSION",
+    "industry": "이커머스_패션",
+    "target_demographic": "20-35세",
+    "funnel_stage": "전환(Conversion)",
+    "budget_range": "월 1,000만-3,000만원",
+    "campaign_structure": {
+      "campaign_goal": "Purchase (구매)",
+      "insertion_orders": [
+        {
+          "io_name": "IO_Remarketing_Dynamic",
+          "budget_allocation": "50%",
+          "pacing": "ASAP",
+          "line_items": [
+            {
+              "li_name": "LI_DPA_CartAbandoners",
+              "targeting": {
+                "audience": "1st Party - 장바구니 이탈자 (최근 3일)",
+                "geo": "대한민국 전역",
+                "device": "Mobile 85% / Desktop 15%"
+              },
+              "bidding": {
+                "strategy": "Target ROAS",
+                "target_value": "400%"
+              },
+              "frequency_cap": "6회/일, 30회/주",
+              "creative": {
+                "format": "Dynamic Product Ads",
+                "message": "장바구니에 담은 상품, 품절 임박!"
+              }
+            }
+          ]
+        },
+        {
+          "io_name": "IO_InMarket_Fashion",
+          "budget_allocation": "30%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_InMarket_Apparel",
+              "targeting": {
+                "audience": "In-Market: Women's Apparel, Activewear",
+                "geo": "대한민국 전역",
+                "device": "Mobile 90% / Desktop 10%"
+              },
+              "bidding": {
+                "strategy": "Target ROAS",
+                "target_value": "350%"
+              },
+              "frequency_cap": "4회/일, 20회/주"
+            }
+          ]
+        },
+        {
+          "io_name": "IO_Similar_Purchasers",
+          "budget_allocation": "20%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_Similar_HighLTV",
+              "targeting": {
+                "audience": "Similar: 재구매 고객 유사",
+                "geo": "대한민국 전역",
+                "device": "Mobile 85% / Desktop 15%"
+              },
+              "bidding": {
+                "strategy": "Maximize Conversions",
+                "target_value": null
+              },
+              "frequency_cap": "3회/일, 15회/주"
+            }
+          ]
+        }
+      ]
+    },
+    "success_metrics": {
+      "achieved_cpa": "8,500원",
+      "target_cpa": "12,000원",
+      "conversion_rate": "3.5%",
+      "roas": "5.2"
+    },
+    "key_learnings": [
+      "모바일 전환율이 압도적 (90% 이상)",
+      "Dynamic Product Ads ROAS가 일반 배너 대비 2.5배",
+      "저녁 9-11시 충동구매 전환율 최고",
+      "세일 시즌 리타겟팅 빈도 확대 효과적"
+    ]
+  },
+  {
+    "template_id": "SERVICE_FORTUNE_2050_CONVERSION",
+    "industry": "서비스_운세상담",
+    "target_demographic": "20-50세",
+    "funnel_stage": "전환(Conversion)",
+    "budget_range": "월 300만-1,000만원",
+    "campaign_structure": {
+      "campaign_goal": "Lead Generation (가입/상담 연결)",
+      "insertion_orders": [
+        {
+          "io_name": "IO_Prospecting_Interest",
+          "budget_allocation": "60%",
+          "pacing": "Even",
+          "line_items": [
+            {
+              "li_name": "LI_Affinity_Lifestyle",
+              "targeting": {
+                "audience": "Affinity: 점술/초자연, 자기계발, 라이프스타일",
+                "geo": "대한민국 전역",
+                "device": "Mobile 80% / Desktop 20%"
+              },
+              "bidding": {
+                "strategy": "Maximize Conversions",
+                "target_value": null
+              },
+              "frequency_cap": "3회/일, 15회/주",
+              "creative": {
+                "format": "Responsive Display",
+                "message": "오늘의 운세 무료 확인"
+              }
+            },
+            {
+              "li_name": "LI_Custom_Fortune",
+              "targeting": {
+                "audience": "Custom: 운세, 사주, 타로, 궁합, 신점",
+                "geo": "대한민국 전역",
+                "device": "Mobile 85% / Desktop 15%"
+              },
+              "bidding": {
+                "strategy": "Target CPA",
+                "target_value": "10,000원"
+              },
+              "frequency_cap": "4회/일, 20회/주"
+            }
+          ]
+        },
+        {
+          "io_name": "IO_Remarketing_Conversion",
+          "budget_allocation": "40%",
+          "pacing": "ASAP",
+          "line_items": [
+            {
+              "li_name": "LI_SiteVisitors_7d",
+              "targeting": {
+                "audience": "1st Party - 사이트 방문자 (최근 7일, 비전환)",
+                "geo": "대한민국 전역",
+                "device": "Mobile 80% / Desktop 20%"
+              },
+              "bidding": {
+                "strategy": "Target CPA",
+                "target_value": "8,000원"
+              },
+              "frequency_cap": "5회/일, 25회/주",
+              "creative": {
+                "format": "Responsive Display",
+                "message": "첫 가입 3,000P 즉시 지급"
+              }
+            },
+            {
+              "li_name": "LI_SignupAbandoners",
+              "targeting": {
+                "audience": "1st Party - 가입 시작 후 이탈자",
+                "geo": "대한민국 전역",
+                "device": "Mobile 85% / Desktop 15%"
+              },
+              "bidding": {
+                "strategy": "Target ROAS",
+                "target_value": "300%"
+              },
+              "frequency_cap": "7회/일, 무제한/주"
+            }
+          ]
+        }
+      ]
+    },
+    "success_metrics": {
+      "achieved_cpa": "9,200원",
+      "target_cpa": "12,000원",
+      "conversion_rate": "2.8%",
+      "roas": "3.8"
+    },
+    "key_learnings": [
+      "저녁 7-12시 전환율 주간 대비 2배",
+      "여성 25-45세 그룹 전환율 최고",
+      "'무료' 키워드 포함 시 CTR 50% 상승",
+      "연애/결혼 관련 메시지가 재물운 대비 전환율 30% 높음",
+      "신년/새해 시즌 CPA 20% 감소"
+    ]
+  }
+]

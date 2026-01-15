@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>DV360 캠페인 전략 제안서 - 모두의운세</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
+      padding: 40px;
+      max-width: 210mm;
+      margin: 0 auto;
+    }
+
+    .page-break {
+      page-break-after: always;
+    }
+
+    /* Cover Page */
+    .cover {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px;
+    }
+
+    .cover h1 {
+      font-size: 32pt;
+      color: #1a73e8;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .cover h2 {
+      font-size: 18pt;
+      color: #5f6368;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .cover .meta {
+      margin-top: 60px;
+      font-size: 12pt;
+      color: #80868b;
+    }
+
+    .cover .grade-badge {
+      display: inline-block;
+      background: #34a853;
+      color: white;
+      padding: 10px 30px;
+      border-radius: 30px;
+      font-size: 24pt;
+      font-weight: 700;
+      margin: 30px 0;
+    }
+
+    /* Section Headers */
+    h2 {
+      font-size: 16pt;
+      color: #1a73e8;
+      border-bottom: 2px solid #1a73e8;
+      padding-bottom: 8px;
+      margin: 30px 0 20px 0;
+    }
+
+    h3 {
+      font-size: 13pt;
+      color: #202124;
+      margin: 20px 0 12px 0;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 10pt;
+    }
+
+    th {
+      background: #1a73e8;
+      color: white;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    /* Info Box */
+    .info-box {
+      background: #e8f0fe;
+      border-left: 4px solid #1a73e8;
+      padding: 15px 20px;
+      margin: 15px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .warning-box {
+      background: #fef7e0;
+      border-left: 4px solid #f9ab00;
+      padding: 15px 20px;
+      margin: 15px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .success-box {
+      background: #e6f4ea;
+      border-left: 4px solid #34a853;
+      padding: 15px 20px;
+      margin: 15px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .kpi-card {
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .kpi-card .value {
+      font-size: 20pt;
+      font-weight: 700;
+      color: #1a73e8;
+    }
+
+    .kpi-card .label {
+      font-size: 9pt;
+      color: #5f6368;
+      margin-top: 5px;
+    }
+
+    /* Flow Chart */
+    .flow-chart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .flow-box {
+      background: #1a73e8;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .flow-arrow {
+      font-size: 20pt;
+      color: #dadce0;
+    }
+
+    /* Budget Bar */
+    .budget-bar {
+      display: flex;
+      height: 30px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+
+    .budget-segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 9pt;
+      font-weight: 500;
+    }
+
+    /* List */
+    ul {
+      margin: 10px 0 10px 20px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+      font-size: 9pt;
+      color: #80868b;
+      text-align: center;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+      .page-break {
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cover Page -->
+<div class="cover">
+  <h1>DV360 캠페인 전략 제안서</h1>
+  <h2>모두의운세 (모운) - 전화 운세 상담 플랫폼</h2>
+
+  <div class="grade-badge">Grade A</div>
+  <p style="color: #5f6368;">검증 점수: 93.3% | 15개 항목 중 14개 통과</p>
+
+  <div class="meta">
+    <p>생성일: 2026년 1월 15일</p>
+    <p>버전: 2026Q1</p>
+    <p>캠페인 기간: 30일</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- Executive Summary -->
+<h2>1. Executive Summary</h2>
+
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="value">300만원</div>
+    <div class="label">총 예산</div>
+  </div>
+  <div class="kpi-card">
+    <div class="value">300%</div>
+    <div class="label">목표 ROAS</div>
+  </div>
+  <div class="kpi-card">
+    <div class="value">30일</div>
+    <div class="label">캠페인 기간</div>
+  </div>
+  <div class="kpi-card">
+    <div class="value">2.8%</div>
+    <div class="label">예상 전환율</div>
+  </div>
+</div>
+
+<div class="success-box">
+  <strong>시즌 어드밴티지:</strong> 현재 1월은 신년 시즌으로 운세 서비스 피크 시즌입니다.
+  벤치마크 기준 CPA 20% 감소가 예상됩니다.
+</div>
+
+<h3>캠페인 목표</h3>
+<table>
+  <tr>
+    <th>항목</th>
+    <th>설정값</th>
+  </tr>
+  <tr>
+    <td>캠페인 유형</td>
+    <td>Lead Generation (가입/상담 연결)</td>
+  </tr>
+  <tr>
+    <td>KPI</td>
+    <td>ROAS 300% 이상</td>
+  </tr>
+  <tr>
+    <td>타겟 오디언스</td>
+    <td>20-50세 여성 중심</td>
+  </tr>
+  <tr>
+    <td>지역</td>
+    <td>대한민국 전역</td>
+  </tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- Campaign Structure -->
+<h2>2. 캠페인 구조</h2>
+
+<h3>예산 배분</h3>
+<div class="budget-bar">
+  <div class="budget-segment" style="width: 60%; background: #1a73e8;">
+    프로스펙팅 60% (180만원)
+  </div>
+  <div class="budget-segment" style="width: 40%; background: #34a853;">
+    리타겟팅 40% (120만원)
+  </div>
+</div>
+
+<h3>Insertion Order 구조</h3>
+
+<table>
+  <tr>
+    <th>IO Name</th>
+    <th>예산</th>
+    <th>Pacing</th>
+    <th>목적</th>
+  </tr>
+  <tr>
+    <td><strong>IO_Prospecting_Interest</strong></td>
+    <td>1,800,000원 (60%)</td>
+    <td>Even</td>
+    <td>신규 유저 유입</td>
+  </tr>
+  <tr>
+    <td><strong>IO_Remarketing_Conversion</strong></td>
+    <td>1,200,000원 (40%)</td>
+    <td>ASAP</td>
+    <td>전환 극대화</td>
+  </tr>
+</table>
+
+<h3>Line Item 상세</h3>
+
+<table>
+  <tr>
+    <th>Line Item</th>
+    <th>오디언스</th>
+    <th>입찰 전략</th>
+    <th>Frequency Cap</th>
+  </tr>
+  <tr>
+    <td>LI_Affinity_Lifestyle</td>
+    <td>Affinity: 점술/초자연, 자기계발</td>
+    <td>Maximize Conversions</td>
+    <td>3회/일, 15회/주</td>
+  </tr>
+  <tr>
+    <td>LI_Custom_Fortune</td>
+    <td>Custom: 운세, 사주, 타로, 궁합</td>
+    <td>Target CPA 10,000원</td>
+    <td>4회/일, 20회/주</td>
+  </tr>
+  <tr>
+    <td>LI_SiteVisitors_7d</td>
+    <td>1st Party - 7일 내 방문자</td>
+    <td>Target CPA 8,000원</td>
+    <td>5회/일, 25회/주</td>
+  </tr>
+  <tr>
+    <td>LI_SignupAbandoners</td>
+    <td>1st Party - 가입 이탈자</td>
+    <td>Target ROAS 300%</td>
+    <td>7회/일</td>
+  </tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- Targeting Strategy -->
+<h2>3. 타겟팅 전략</h2>
+
+<h3>퍼널 단계별 오디언스</h3>
+
+<div class="flow-chart">
+  <div class="flow-box">
+    <strong>TOFU</strong><br>
+    <span style="font-size: 9pt;">Affinity 관심사</span>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box">
+    <strong>MOFU</strong><br>
+    <span style="font-size: 9pt;">Custom 키워드</span>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box" style="background: #34a853;">
+    <strong>BOFU</strong><br>
+    <span style="font-size: 9pt;">리타겟팅</span>
+  </div>
+</div>
+
+<h3>데모그래픽 설정</h3>
+<table>
+  <tr>
+    <th>항목</th>
+    <th>설정값</th>
+    <th>비고</th>
+  </tr>
+  <tr>
+    <td>성별</td>
+    <td>여성 중심</td>
+    <td>벤치마크: 여성 25-45세 전환율 최고</td>
+  </tr>
+  <tr>
+    <td>연령</td>
+    <td>20-50세</td>
+    <td>핵심 타겟: 25-45세</td>
+  </tr>
+  <tr>
+    <td>디바이스</td>
+    <td>Mobile 80% / Desktop 20%</td>
+    <td>전화 상담 특성상 모바일 집중</td>
+  </tr>
+  <tr>
+    <td>지역</td>
+    <td>대한민국 전역</td>
+    <td>-</td>
+  </tr>
+</table>
+
+<h3>오디언스 유형별 전략</h3>
+<table>
+  <tr>
+    <th>유형</th>
+    <th>타겟팅</th>
+    <th>예상 전환율</th>
+  </tr>
+  <tr>
+    <td><strong>Affinity</strong></td>
+    <td>점술/초자연, 자기계발, 라이프스타일</td>
+    <td>1.5-2.0%</td>
+  </tr>
+  <tr>
+    <td><strong>Custom Intent</strong></td>
+    <td>운세, 사주, 타로, 궁합, 신점 키워드</td>
+    <td>2.5-3.5%</td>
+  </tr>
+  <tr>
+    <td><strong>1st Party (방문자)</strong></td>
+    <td>최근 7일 사이트 방문자 (비전환)</td>
+    <td>4.0-5.0%</td>
+  </tr>
+  <tr>
+    <td><strong>1st Party (이탈자)</strong></td>
+    <td>가입 시작 후 이탈자</td>
+    <td>6.0-8.0%</td>
+  </tr>
+</table>
+
+<h3>시간대 타겟팅</h3>
+<div class="info-box">
+  <strong>황금 시간대:</strong> 저녁 7시-12시 (전환율 주간 대비 2배)<br>
+  <strong>권장:</strong> 전 시간대 운영, 저녁 7-11시 입찰 +20% 상향
+</div>
+
+<div class="page-break"></div>
+
+<!-- Bidding Strategy -->
+<h2>4. 입찰 전략</h2>
+
+<h3>Phase별 입찰 전략</h3>
+
+<table>
+  <tr>
+    <th>Phase</th>
+    <th>기간</th>
+    <th>전략</th>
+    <th>목표</th>
+  </tr>
+  <tr>
+    <td><strong>Phase 1: 학습</strong></td>
+    <td>Week 1-2</td>
+    <td>Maximize Conversions</td>
+    <td>데이터 수집, 알고리즘 학습</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 2: 최적화</strong></td>
+    <td>Week 3-4</td>
+    <td>Target ROAS 300%</td>
+    <td>효율 관리, ROAS 달성</td>
+  </tr>
+</table>
+
+<h3>Line Item별 입찰 설정</h3>
+<table>
+  <tr>
+    <th>Line Item</th>
+    <th>초기 전략</th>
+    <th>목표 전환 시</th>
+  </tr>
+  <tr>
+    <td>LI_Affinity_Lifestyle</td>
+    <td>Maximize Conversions</td>
+    <td>Target CPA 12,000원</td>
+  </tr>
+  <tr>
+    <td>LI_Custom_Fortune</td>
+    <td>Target CPA 10,000원</td>
+    <td>유지 또는 하향 조정</td>
+  </tr>
+  <tr>
+    <td>LI_SiteVisitors_7d</td>
+    <td>Target CPA 8,000원</td>
+    <td>Target ROAS 350%</td>
+  </tr>
+  <tr>
+    <td>LI_SignupAbandoners</td>
+    <td>Target ROAS 300%</td>
+    <td>Target ROAS 400%</td>
+  </tr>
+</table>
+
+<h3>벤치마크 비교</h3>
+<div class="success-box">
+  <strong>업종 벤치마크 (서비스_운세상담):</strong><br>
+  • 달성 CPA: 9,200원 / 목표 CPA: 12,000원<br>
+  • 전환율: 2.8% / ROAS: 3.8x<br>
+  • <strong>현재 목표 ROAS 300%는 달성 가능한 수준입니다.</strong>
+</div>
+
+<div class="page-break"></div>
+
+<!-- Creative Guidelines -->
+<h2>5. 크리에이티브 가이드</h2>
+
+<h3>메시지 전략</h3>
+<table>
+  <tr>
+    <th>Line Item</th>
+    <th>권장 메시지</th>
+    <th>CTA</th>
+  </tr>
+  <tr>
+    <td>LI_Affinity_Lifestyle</td>
+    <td>오늘의 운세 무료 확인</td>
+    <td>무료로 확인하기</td>
+  </tr>
+  <tr>
+    <td>LI_Custom_Fortune</td>
+    <td>2026년 신년운세, 지금 바로 상담</td>
+    <td>상담 신청하기</td>
+  </tr>
+  <tr>
+    <td>LI_SiteVisitors_7d</td>
+    <td>첫 가입 3,000P 즉시 지급</td>
+    <td>포인트 받기</td>
+  </tr>
+  <tr>
+    <td>LI_SignupAbandoners</td>
+    <td>가입만 해도 무료 상담 1회</td>
+    <td>지금 가입하기</td>
+  </tr>
+</table>
+
+<h3>핵심 인사이트</h3>
+<div class="info-box">
+  <strong>벤치마크 기반 크리에이티브 권장사항:</strong>
+  <ul>
+    <li>'무료' 키워드 포함 시 CTR 50% 상승</li>
+    <li>연애/결혼 관련 메시지가 재물운 대비 전환율 30% 높음</li>
+    <li>긴급성 메시지 (오늘만, 지금 바로) 효과적</li>
+  </ul>
+</div>
+
+<h3>배너 사이즈</h3>
+<table>
+  <tr>
+    <th>사이즈</th>
+    <th>용도</th>
+    <th>우선순위</th>
+  </tr>
+  <tr>
+    <td>320x50</td>
+    <td>모바일 배너</td>
+    <td>필수</td>
+  </tr>
+  <tr>
+    <td>300x250</td>
+    <td>모바일/데스크톱 공용</td>
+    <td>필수</td>
+  </tr>
+  <tr>
+    <td>336x280</td>
+    <td>데스크톱 중형</td>
+    <td>권장</td>
+  </tr>
+  <tr>
+    <td>728x90</td>
+    <td>데스크톱 리더보드</td>
+    <td>권장</td>
+  </tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- Tracking Setup -->
+<h2>6. Floodlight 추적 설정</h2>
+
+<h3>필수 설치 항목</h3>
+<table>
+  <tr>
+    <th>태그</th>
+    <th>설치 위치</th>
+    <th>목적</th>
+  </tr>
+  <tr>
+    <td>Global Site Tag (gtag.js)</td>
+    <td>전체 페이지 &lt;head&gt;</td>
+    <td>기본 추적 코드</td>
+  </tr>
+  <tr>
+    <td>PageView Event</td>
+    <td>전체 페이지</td>
+    <td>방문자 수집</td>
+  </tr>
+  <tr>
+    <td>Lead/Signup Event</td>
+    <td>가입 완료 페이지</td>
+    <td>전환 추적</td>
+  </tr>
+  <tr>
+    <td>Purchase Event</td>
+    <td>결제 완료 페이지</td>
+    <td>매출 추적 (ROAS용)</td>
+  </tr>
+</table>
+
+<h3>Attribution Window 설정</h3>
+<table>
+  <tr>
+    <th>전환 유형</th>
+    <th>Click-through</th>
+    <th>View-through</th>
+  </tr>
+  <tr>
+    <td>Purchase/Lead</td>
+    <td>30일</td>
+    <td>1일</td>
+  </tr>
+  <tr>
+    <td>PageView</td>
+    <td>Per Session</td>
+    <td>-</td>
+  </tr>
+</table>
+
+<h3>오디언스 리스트 생성</h3>
+<table>
+  <tr>
+    <th>리스트명</th>
+    <th>조건</th>
+    <th>용도</th>
+  </tr>
+  <tr>
+    <td>All Visitors</td>
+    <td>최근 30일 방문자</td>
+    <td>리마케팅 소스</td>
+  </tr>
+  <tr>
+    <td>Product Viewers</td>
+    <td>최근 14일 상세페이지 방문</td>
+    <td>Mid-funnel 타겟</td>
+  </tr>
+  <tr>
+    <td>Cart/Signup Abandoners</td>
+    <td>최근 7일 이탈자</td>
+    <td>High-intent 타겟</td>
+  </tr>
+  <tr>
+    <td>Converters</td>
+    <td>최근 90일 전환자</td>
+    <td>Exclusion용</td>
+  </tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- Optimization Roadmap -->
+<h2>7. 최적화 로드맵</h2>
+
+<h3>Week 1-2: 학습 단계</h3>
+<table>
+  <tr>
+    <th>Action</th>
+    <th>상세</th>
+  </tr>
+  <tr>
+    <td>입찰 전략</td>
+    <td>Maximize Conversions로 시작</td>
+  </tr>
+  <tr>
+    <td>예산 활용</td>
+    <td>전체 예산의 70% 활용 (일 7만원)</td>
+  </tr>
+  <tr>
+    <td>A/B 테스트</td>
+    <td>메시지 테스트: 무료 vs 할인 vs 포인트</td>
+  </tr>
+  <tr>
+    <td>모니터링 KPI</td>
+    <td>전환 수, CPM, CTR</td>
+  </tr>
+</table>
+
+<h3>Week 3-4: 최적화 단계</h3>
+<table>
+  <tr>
+    <th>Action</th>
+    <th>상세</th>
+  </tr>
+  <tr>
+    <td>입찰 전환</td>
+    <td>Target ROAS 300%로 전환</td>
+  </tr>
+  <tr>
+    <td>예산 재배분</td>
+    <td>저성과 LI → 고성과 LI로 이동</td>
+  </tr>
+  <tr>
+    <td>오디언스 확장</td>
+    <td>고성과 오디언스 Similar 생성</td>
+  </tr>
+  <tr>
+    <td>최종 KPI</td>
+    <td>ROAS, 전환율, CPA</td>
+  </tr>
+</table>
+
+<h3>성과 기준 가이드</h3>
+<div class="info-box">
+  <strong>전환 기준 (Target CPA/ROAS 전환 조건):</strong>
+  <ul>
+    <li>주간 전환 수 30회 이상 달성</li>
+    <li>CPA 변동성 20% 이내로 안정</li>
+    <li>예산 소진율 80% 이상 유지</li>
+  </ul>
+</div>
+
+<div class="page-break"></div>
+
+<!-- Validation Results -->
+<h2>8. 검증 결과</h2>
+
+<div class="success-box">
+  <strong>최종 등급: A (93.3%)</strong><br>
+  15개 검증 항목 중 14개 통과, 1개 경고
+</div>
+
+<h3>통과 항목 (14개)</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>검증 항목</th>
+    <th>결과</th>
+  </tr>
+  <tr>
+    <td>BV001</td>
+    <td>전체 IO 예산 합계 = 캠페인 총 예산</td>
+    <td style="color: #34a853;">✓ Pass</td>
+  </tr>
+  <tr>
+    <td>BV002</td>
+    <td>일일 예산 ≥ 목표 CPA × 10</td>
+    <td style="color: #34a853;">✓ Pass</td>
+  </tr>
+  <tr>
+    <td>TV002</td>
+    <td>지역 타겟팅 = 서비스 가능 지역</td>
+    <td style="color: #34a853;">✓ Pass</td>
+  </tr>
+  <tr>
+    <td>BD001</td>
+    <td>목표 CPA 벤치마크 대비 합리적</td>
+    <td style="color: #34a853;">✓ Pass</td>
+  </tr>
+  <tr>
+    <td>BD003</td>
+    <td>입찰 전략 데이터 요구사항 충족</td>
+    <td style="color: #34a853;">✓ Pass</td>
+  </tr>
+  <tr>
+    <td>SV001</td>
+    <td>캠페인-IO-LI 계층 구조 정상</td>
+    <td style="color: #34a853;">✓ Pass</td>
+  </tr>
+  <tr>
+    <td>TK001</td>
+    <td>Floodlight 태그 설정 완료</td>
+    <td style="color: #34a853;">✓ Pass</td>
+  </tr>
+</table>
+<p style="font-size: 9pt; color: #5f6368;">* 전체 14개 통과 항목 중 주요 7개 표시</p>
+
+<h3>경고 항목 (1개)</h3>
+<div class="warning-box">
+  <strong>TV004: Frequency Cap 과도</strong><br>
+  • 위치: LI_SignupAbandoners<br>
+  • 현재: 7회/일, 무제한/주<br>
+  • 권장: 7회/일, 35회/주로 조정
+</div>
+
+<div class="footer">
+  <p>본 제안서는 DV360 Campaign Strategy AI Generator (v2026Q1)에 의해 자동 생성되었습니다.</p>
+  <p>생성일시: 2026-01-15 | 검증 점수: 93.3% | Grade: A</p>
+</div>
+
+</body>
+</html>

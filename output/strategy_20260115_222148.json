@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "generated_at": "2026-01-15T22:21:48.891813",
+    "generator_version": "2026Q1",
+    "grade": "A"
+  },
+  "campaign": {
+    "name": "DV360_서비스_운세상담_202601",
+    "goal": "Lead Generation",
+    "budget": 3000000,
+    "duration_days": 30
+  },
+  "insertion_orders": [
+    {
+      "io_name": "IO_Prospecting_Interest",
+      "budget": 1800000,
+      "pacing": "Even",
+      "line_items": [
+        {
+          "li_name": "LI_Affinity_Lifestyle",
+          "targeting": {
+            "audience": "Affinity: 점술/초자연, 자기계발, 라이프스타일",
+            "geo": "대한민국 전역",
+            "device": "Mobile 80% / Desktop 20%"
+          },
+          "bidding": {
+            "strategy": "Maximize Conversions",
+            "target_value": null
+          },
+          "frequency_cap": "3회/일, 15회/주",
+          "creative": {
+            "format": "Responsive Display",
+            "message": "오늘의 운세 무료 확인"
+          }
+        },
+        {
+          "li_name": "LI_Custom_Fortune",
+          "targeting": {
+            "audience": "Custom: 운세, 사주, 타로, 궁합, 신점",
+            "geo": "대한민국 전역",
+            "device": "Mobile 85% / Desktop 15%"
+          },
+          "bidding": {
+            "strategy": "Target CPA",
+            "target_value": "10,000원"
+          },
+          "frequency_cap": "4회/일, 20회/주",
+          "creative": {}
+        }
+      ]
+    },
+    {
+      "io_name": "IO_Remarketing_Conversion",
+      "budget": 1200000,
+      "pacing": "ASAP",
+      "line_items": [
+        {
+          "li_name": "LI_SiteVisitors_7d",
+          "targeting": {
+            "audience": "1st Party - 사이트 방문자 (최근 7일, 비전환)",
+            "geo": "대한민국 전역",
+            "device": "Mobile 80% / Desktop 20%"
+          },
+          "bidding": {
+            "strategy": "Target CPA",
+            "target_value": "8,000원"
+          },
+          "frequency_cap": "5회/일, 25회/주",
+          "creative": {
+            "format": "Responsive Display",
+            "message": "첫 가입 3,000P 즉시 지급"
+          }
+        },
+        {
+          "li_name": "LI_SignupAbandoners",
+          "targeting": {
+            "audience": "1st Party - 가입 시작 후 이탈자",
+            "geo": "대한민국 전역",
+            "device": "Mobile 85% / Desktop 15%"
+          },
+          "bidding": {
+            "strategy": "Target ROAS",
+            "target_value": "300%"
+          },
+          "frequency_cap": "7회/일, 무제한/주",
+          "creative": {}
+        }
+      ]
+    }
+  ],
+  "targeting": {
+    "primary_audience": "20-50세",
+    "geo_targets": [
+      "대한민국 전역"
+    ],
+    "device_split": "Mobile 80% / Desktop 20%",
+    "time_targeting": "전 시간대 (저녁 7-11시 입찰 상향)",
+    "exclusions": [
+      "기존 전환 고객",
+      "경쟁사 직원"
+    ]
+  },
+  "bidding": {
+    "primary_strategy": "Target ROAS",
+    "target_value": "300.0%",
+    "phase_1": "Maximize Conversions (1-2주)",
+    "phase_2": "Target ROAS (2-4주)",
+    "seasonality_adjustment": 1.2,
+    "recommendation": "목표 CPA가 벤치마크 대비 낮음, 상향 조정 권장"
+  },
+  "optimization_roadmap": [
+    {
+      "phase": "Phase 1: 학습 (Week 1-2)",
+      "actions": [
+        "Maximize Conversions 전략으로 시작",
+        "전체 예산의 70% 활용",
+        "A/B 테스트 셋업 (메시지/크리에이티브)"
+      ],
+      "kpis": [
+        "전환 수",
+        "CPM",
+        "CTR"
+      ]
+    },
+    {
+      "phase": "Phase 2: 최적화 (Week 3-4)",
+      "actions": [
+        "Target ROAS 전환",
+        "저성과 Line Item 예산 재배분",
+        "고성과 오디언스 확장"
+      ],
+      "kpis": [
+        "ROAS",
+        "전환율",
+        "ROAS"
+      ]
+    }
+  ],
+  "floodlight": {
+    "global_site_tag": "gtag.js 설치 필요",
+    "activities": [
+      {
+        "name": "Purchase/Lead",
+        "type": "Counter",
+        "counting_method": "Standard",
+        "attribution_window": {
+          "click": "30일",
+          "view": "1일"
+        }
+      },
+      {
+        "name": "PageView",
+        "type": "Counter",
+        "counting_method": "Per Session"
+      }
+    ],
+    "audience_lists": [
+      "All Visitors (30일)",
+      "Product Viewers (14일)",
+      "Cart Abandoners (7일)",
+      "Converters (90일) - Exclusion용"
+    ]
+  },
+  "validation": {
+    "passed": [
+      {
+        "id": "BV001",
+        "description": "전체 IO 예산 합계가 캠페인 총 예산과 일치하는지 확인",
+        "severity": "critical",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "BV002",
+        "description": "일일 예산이 목표 CPA의 10배 이상인지 확인",
+        "severity": "warning",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "BV003",
+        "description": "Pacing 설정이 캠페인 목표와 일치하는지 확인",
+        "severity": "info",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "TV001",
+        "description": "Line Item 간 오디언스 중복이 30% 이하인지 확인",
+        "severity": "warning",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "TV002",
+        "description": "지역 타겟팅이 서비스 가능 지역과 일치하는지 확인",
+        "severity": "critical",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "TV003",
+        "description": "디바이스 비율이 업종 벤치마크와 ±20% 이내인지 확인",
+        "severity": "info",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "BD001",
+        "description": "목표 CPA가 업종 벤치마크 대비 합리적인지 확인",
+        "severity": "warning",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "BD002",
+        "description": "목표 ROAS가 달성 가능한 수준인지 확인",
+        "severity": "warning",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "BD003",
+        "description": "선택한 입찰 전략에 필요한 데이터가 충족되는지 확인",
+        "severity": "critical",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "SV001",
+        "description": "캠페인-IO-LI 계층 구조가 올바른지 확인",
+        "severity": "critical",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "SV002",
+        "description": "네이밍 규칙이 일관되게 적용되었는지 확인",
+        "severity": "info",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "SV003",
+        "description": "Line Item 수가 적정 범위인지 확인 (IO당 2-5개)",
+        "severity": "warning",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "TK001",
+        "description": "Floodlight 태그가 올바르게 설정되었는지 확인",
+        "severity": "critical",
+        "passed": true,
+        "message": ""
+      },
+      {
+        "id": "TK002",
+        "description": "전환 창이 적절하게 설정되었는지 확인",
+        "severity": "info",
+        "passed": true,
+        "message": ""
+      }
+    ],
+    "warnings": [
+      {
+        "id": "TV004",
+        "description": "Frequency Cap이 과도하지 않은지 확인 (일 10회, 주 50회 이하)",
+        "severity": "warning",
+        "passed": false,
+        "message": "무제한 Frequency Cap 발견, 조정 권장"
+      }
+    ],
+    "critical_failures": [],
+    "score": 93.33333333333333,
+    "grade": "A"
+  },
+  "benchmarks": {
+    "industry": "서비스_운세상담",
+    "achieved_cpa": "9,200원",
+    "target_cpa": "12,000원",
+    "conversion_rate": "2.8%",
+    "roas": "3.8",
+    "key_learnings": [
+      "저녁 7-12시 전환율 주간 대비 2배",
+      "여성 25-45세 그룹 전환율 최고",
+      "'무료' 키워드 포함 시 CTR 50% 상승",
+      "연애/결혼 관련 메시지가 재물운 대비 전환율 30% 높음",
+      "신년/새해 시즌 CPA 20% 감소"
+    ]
+  },
+  "seasonality": {
+    "current_month": 1,
+    "is_peak_season": true,
+    "cpm_adjustment": 1.2,
+    "notes": [
+      "신년 시즌: CPA 20% 감소 예상"
+    ]
+  }
+}

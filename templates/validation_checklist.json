@@ -1,0 +1,216 @@
+{
+  "checklist_version": "2026Q1",
+  "description": "DV360 Campaign Pre-Launch 15-Point Validation Checklist",
+  "validation_categories": [
+    {
+      "category": "budget_validation",
+      "items": [
+        {
+          "id": "BV001",
+          "check": "total_budget_allocation",
+          "description": "전체 IO 예산 합계가 캠페인 총 예산과 일치하는지 확인",
+          "validation_rule": "sum(io_budgets) == campaign_total_budget",
+          "severity": "critical",
+          "auto_fix": true
+        },
+        {
+          "id": "BV002",
+          "check": "minimum_daily_budget",
+          "description": "일일 예산이 목표 CPA의 10배 이상인지 확인",
+          "validation_rule": "daily_budget >= target_cpa * 10",
+          "severity": "warning",
+          "recommendation": "예산 부족 시 Line Item 수 축소 권장"
+        },
+        {
+          "id": "BV003",
+          "check": "budget_pacing_alignment",
+          "description": "Pacing 설정이 캠페인 목표와 일치하는지 확인",
+          "validation_rule": "pacing in ['ASAP', 'Even'] and matches_goal",
+          "severity": "info"
+        }
+      ]
+    },
+    {
+      "category": "targeting_validation",
+      "items": [
+        {
+          "id": "TV001",
+          "check": "audience_overlap",
+          "description": "Line Item 간 오디언스 중복이 30% 이하인지 확인",
+          "validation_rule": "audience_overlap_rate <= 0.3",
+          "severity": "warning",
+          "recommendation": "중복 시 Negative Targeting 추가"
+        },
+        {
+          "id": "TV002",
+          "check": "geo_coverage",
+          "description": "지역 타겟팅이 서비스 가능 지역과 일치하는지 확인",
+          "validation_rule": "geo_targets.issubset(service_areas)",
+          "severity": "critical"
+        },
+        {
+          "id": "TV003",
+          "check": "device_distribution",
+          "description": "디바이스 비율이 업종 벤치마크와 ±20% 이내인지 확인",
+          "validation_rule": "abs(mobile_ratio - benchmark) <= 0.2",
+          "severity": "info"
+        },
+        {
+          "id": "TV004",
+          "check": "frequency_cap_sanity",
+          "description": "Frequency Cap이 과도하지 않은지 확인 (일 10회, 주 50회 이하)",
+          "validation_rule": "daily_cap <= 10 and weekly_cap <= 50",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "category": "bidding_validation",
+      "items": [
+        {
+          "id": "BD001",
+          "check": "cpa_target_reasonability",
+          "description": "목표 CPA가 업종 벤치마크 대비 합리적인지 확인",
+          "validation_rule": "0.7 * benchmark_cpa <= target_cpa <= 1.5 * benchmark_cpa",
+          "severity": "warning",
+          "benchmark_source": "golden_dataset"
+        },
+        {
+          "id": "BD002",
+          "check": "roas_target_achievability",
+          "description": "목표 ROAS가 달성 가능한 수준인지 확인",
+          "validation_rule": "target_roas <= benchmark_roas * 1.3",
+          "severity": "warning"
+        },
+        {
+          "id": "BD003",
+          "check": "bidding_strategy_data_requirement",
+          "description": "선택한 입찰 전략에 필요한 데이터가 충족되는지 확인",
+          "validation_rule": {
+            "target_cpa": "weekly_conversions >= 30",
+            "target_roas": "weekly_conversions >= 15 and has_revenue_data",
+            "maximize_conversions": "true"
+          },
+          "severity": "critical"
+        }
+      ]
+    },
+    {
+      "category": "structure_validation",
+      "items": [
+        {
+          "id": "SV001",
+          "check": "campaign_hierarchy",
+          "description": "캠페인-IO-LI 계층 구조가 올바른지 확인",
+          "validation_rule": "each_io_has_line_items and each_li_has_targeting",
+          "severity": "critical"
+        },
+        {
+          "id": "SV002",
+          "check": "naming_convention",
+          "description": "네이밍 규칙이 일관되게 적용되었는지 확인",
+          "validation_rule": "matches_pattern: '{TYPE}_{Purpose}_{Detail}'",
+          "severity": "info",
+          "pattern_examples": [
+            "IO_Remarketing_Hot",
+            "LI_InMarket_Health",
+            "LI_CartAbandoners_Display"
+          ]
+        },
+        {
+          "id": "SV003",
+          "check": "line_item_count",
+          "description": "Line Item 수가 적정 범위인지 확인 (IO당 2-5개)",
+          "validation_rule": "2 <= line_items_per_io <= 5",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "category": "tracking_validation",
+      "items": [
+        {
+          "id": "TK001",
+          "check": "floodlight_setup",
+          "description": "Floodlight 태그가 올바르게 설정되었는지 확인",
+          "validation_rule": "floodlight_activity_id exists and is_active",
+          "severity": "critical"
+        },
+        {
+          "id": "TK002",
+          "check": "conversion_window",
+          "description": "전환 창이 적절하게 설정되었는지 확인",
+          "validation_rule": "click_through_window <= 30 and view_through_window <= 7",
+          "severity": "info",
+          "recommendation": "업종별 고객 여정 고려 필요"
+        }
+      ]
+    }
+  ],
+  "severity_definitions": {
+    "critical": {
+      "description": "캠페인 실행 전 반드시 해결해야 함",
+      "action": "block_launch",
+      "color": "#FF0000"
+    },
+    "warning": {
+      "description": "성과에 영향을 줄 수 있음, 검토 권장",
+      "action": "require_acknowledgment",
+      "color": "#FFA500"
+    },
+    "info": {
+      "description": "참고 사항, 개선 가능",
+      "action": "log_only",
+      "color": "#0000FF"
+    }
+  },
+  "grading_system": {
+    "S": {
+      "range": "95-100%",
+      "description": "완벽한 전략, 즉시 실행 가능",
+      "critical_pass": true,
+      "warning_max": 1
+    },
+    "A": {
+      "range": "85-94%",
+      "description": "우수한 전략, 소폭 조정 후 실행",
+      "critical_pass": true,
+      "warning_max": 3
+    },
+    "B": {
+      "range": "70-84%",
+      "description": "양호한 전략, 일부 개선 필요",
+      "critical_pass": true,
+      "warning_max": 5
+    },
+    "C": {
+      "range": "50-69%",
+      "description": "개선 필요, 재검토 권장",
+      "critical_pass": false,
+      "critical_max": 2
+    },
+    "D": {
+      "range": "0-49%",
+      "description": "재작성 필요",
+      "critical_pass": false,
+      "critical_max": null
+    }
+  },
+  "auto_fix_rules": [
+    {
+      "trigger": "BV001",
+      "action": "redistribute_budget_proportionally",
+      "description": "예산 합계 불일치 시 비율에 따라 자동 재분배"
+    },
+    {
+      "trigger": "TV001",
+      "action": "suggest_negative_targeting",
+      "description": "오디언스 중복 시 Negative Targeting 자동 제안"
+    },
+    {
+      "trigger": "SV002",
+      "action": "rename_with_convention",
+      "description": "네이밍 규칙 위반 시 자동 수정 제안"
+    }
+  ]
+}
